@@ -11,14 +11,18 @@ try {
     environment = 'staging'
 
   else if (branch.includes('production'))
-    environment = 'production'
- 
-   
-  console.log(env);
-  console.log(environment);
-  console.log(branch);
+    environment = 'production';  
 
-} 
+
+  console.log(core.getState('PATH_TO_PROJECT_FOLDER'));
+
+  var variablesToLoad = env.split(' ');
+
+  variablesToLoad.forEach((item) => {
+     core.exportVariable(item, "test");
+     core.setSecret(item);
+  });
+}
 catch (error) {
   core.setFailed(error.message);
 }
