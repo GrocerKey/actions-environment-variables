@@ -6,10 +6,10 @@ try {
 
   const environment = 'development';
 
-  if(branch.indexof('staging'))
+  if(branch.includes('staging'))
     environment = 'staging'
 
-  else if (branch.indexof('production'))
+  else if (branch.includes('production'))
     environment = 'production'
  
    
