@@ -16,6 +16,7 @@ try {
    
   console.log(env);
   console.log(environment);
+  console.log(branch);
 
 } 
 catch (error) {
