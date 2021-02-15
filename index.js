@@ -13,7 +13,7 @@ try {
     environment = 'production'
  
    
-  console.log(github.context);
+  console.log(github);
 
 } 
 catch (error) {
