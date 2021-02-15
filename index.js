@@ -14,15 +14,17 @@ try {
     environment = 'production';  
 
 
-  console.log(core.getState('PATH_TO_PROJECT_FOLDER'));
+  console.log(core.getState());
 
   var variablesToLoad = env.split(' ');
 
   variablesToLoad.forEach((item) => {
      core.exportVariable(item, "test");
      core.setSecret(item);
+     console.log("test");
   });
 }
+
 catch (error) {
   core.setFailed(error.message);
 }
