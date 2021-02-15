@@ -4,6 +4,8 @@ inputs:
   branch:  # id of input
     required: true
     default: ''
+  env:  # id of input
+    required: true
 runs:
   using: 'node12'
   main: 'index.js'
