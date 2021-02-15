@@ -6,6 +6,7 @@ inputs:
     default: ''
   env:  # id of input
     required: true
+    default: ''
 runs:
   using: 'node12'
   main: 'index.js'

@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 try {    
   const branch = core.getInput('branch');
-  const environmentVariables = core.getInput('env');
+  const env = core.getInput('env');
 
   const environment = 'development';
 
@@ -14,7 +14,8 @@ try {
     environment = 'production'
  
    
-  console.log(core);
+  console.log(env);
+  console.log(environment);
 
 } 
 catch (error) {
