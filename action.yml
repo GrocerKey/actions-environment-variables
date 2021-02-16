@@ -1,7 +1,7 @@
 name: 'actions-environment-variables'
 description: ''
 inputs:
-  env:  # id of input
+  environment:  # id of input
     required: true
     default: ''
   gitToken:  # id of input
