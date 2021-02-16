@@ -5,21 +5,17 @@ const{ execSync } = require('child_process');
 const fs = require('fs');
 
 try {    
-  const env = core.getInput('env');
+  const environment = core.getInput('environment');
   const vars = core.getInput('vars');
   const gitToken = core.getInput('gitToken');
-  
-  console.log(github);
   
   execSync(`git clone https://${gitToken}:x-oauth-basic@github.com/GrocerKey/ci-environment-variables.git`, {
   stdio: [0, 1, 2], // we need this so node will print the command output
   cwd: path.resolve(__dirname, ''), // path to where you want to save the file
   })
   
-  console.log(environment);
-  console.log(`ci-environment-variables\\${env}-environment.txt`);
   
-  let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${env}-environment.txt`));
+  let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${environment}-environment.txt`));
   let parsedData = JSON.parse(rawdata);
   console.log(parsedData);
 
