@@ -19,9 +19,7 @@ try {
   let parsedData = JSON.parse(rawdata);
   
   var dict = {};
-  $.each(
-    parsedData, 
-    function (key, value) {
+  parsedData.forEach((item) => {
         dict[key] = value;
    });
 
