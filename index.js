@@ -43,13 +43,13 @@ function getEnvironment(branchName)
   var branchSuffix = branchName.replace('refs/heads/','').toLowerCase();
   switch (branchSuffix) {
     case 'production':
-      return 'production';
+      return 'PRODUCTION';
       break;
     case 'staging':
-     return 'staging';
+     return 'STAGING';
      break;
    default:
-    return 'development';
+    return 'DEVELOPMENT';
 }
 
   
