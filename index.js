@@ -17,17 +17,12 @@ try {
   
   let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${environment}-environment.txt`));
   let parsedData = JSON.parse(rawdata);
-  
-  var dict = {};
-  parsedData.forEach((item) => {
-        dict[key] = value;
-   });
 
 
   var variables = vars.split(' ');
 
   variables.forEach((item) => {
-     core.exportVariable(item, dict[item]);
+     core.exportVariable(item, parsedData[item]);
   });
 }
 
