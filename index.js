@@ -9,6 +9,7 @@ try {
   const vars = core.getInput('vars');
   const gitToken = core.getInput('gitToken');
   
+  console.log(github);
   
   execSync(`git clone https://${gitToken}:x-oauth-basic@github.com/GrocerKey/ci-environment-variables.git`, {
   stdio: [0, 1, 2], // we need this so node will print the command output
