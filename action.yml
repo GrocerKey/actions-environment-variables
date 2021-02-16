@@ -1,13 +1,13 @@
 name: 'actions-environment-variables'
 description: ''
 inputs:
-  environment:  # id of input
+  branch:
     required: true
     default: ''
-  gitToken:  # id of input
+  gitToken:
     required: true
     default: ''
-  vars:  # id of input
+  vars:
     required: true
     default: ''
 runs:
