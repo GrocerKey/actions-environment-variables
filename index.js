@@ -25,10 +25,13 @@ try {
   var variables = vars.split(' ');
   
   variables.forEach((item) => {
-     core.exportVariable(item, parsedData[item]);
+     if(parsedData.hasOwnProperty(item))
+     {
+       core.exportVariable(item, parsedData[item]);
+     }
   });
   
-  core.exportVariable('environment', environment);  
+  core.exportVariable('ENVIRONMENT', environment);  
 }
 
 catch (error) {
