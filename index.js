@@ -15,6 +15,9 @@ try {
   cwd: path.resolve(__dirname, ''), // path to where you want to save the file
   })
   
+  console.log(environment);
+  console.log(`ci-environment-variables\\${environment}-environment.txt`);
+  
   let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${environment}-environment.txt`));
   let parsedData = JSON.parse(rawdata);
   console.log(parsedData);
