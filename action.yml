@@ -1,10 +1,13 @@
-name: 'GK Variables Action'
+name: 'actions-environment-variables'
 description: ''
 inputs:
-  branch:  # id of input
+  environment:  # id of input
     required: true
     default: ''
-  env:  # id of input
+  gitToken:  # id of input
+    required: true
+    default: ''
+  vars:  # id of input
     required: true
     default: ''
 runs:
