@@ -5,7 +5,7 @@ const{ execSync } = require('child_process');
 const fs = require('fs');
 
 try {    
-  const environment = core.getInput('environment');
+  const env = core.getInput('env');
   const vars = core.getInput('vars');
   const gitToken = core.getInput('gitToken');
   
@@ -16,9 +16,9 @@ try {
   })
   
   console.log(environment);
-  console.log(`ci-environment-variables\\${environment}-environment.txt`);
+  console.log(`ci-environment-variables\\${env}-environment.txt`);
   
-  let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${environment}-environment.txt`));
+  let rawdata = fs.readFileSync(path.resolve(__dirname,`ci-environment-variables\\${env}-environment.txt`));
   let parsedData = JSON.parse(rawdata);
   console.log(parsedData);
 
