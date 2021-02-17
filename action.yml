@@ -4,12 +4,6 @@ inputs:
   branch:
     required: true
     default: ''
-  gitToken:
-    required: true
-    default: ''
-  vars:
-    required: true
-    default: ''
 runs:
   using: 'node12'
   main: 'index.js'
