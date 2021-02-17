@@ -30,11 +30,10 @@ function setEnvironment(branchName)
         break;
       default:
        isFeatureBranch = true;
-       environment = 'DEVELOPMENT';
-
-     core.exportVariable('IS_FEATURE_BRANCH', isFeatureBranch);
-     core.exportVariable('ENVIRONMENT', environment);
+       environment = 'DEVELOPMENT';     
    }
+   core.exportVariable('IS_FEATURE_BRANCH', isFeatureBranch);
+   core.exportVariable('ENVIRONMENT', environment);
 
   
 }
