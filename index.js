@@ -11,7 +11,6 @@ try {
   
   const environment = getEnvironment(branch);
   
-  
   execSync(`git clone https://${gitToken}:x-oauth-basic@github.com/GrocerKey/ci-environment-variables.git`, {
   stdio: [0, 1, 2],
   cwd: path.resolve(__dirname, ''), 
@@ -29,9 +28,7 @@ try {
      {
        core.exportVariable(item, parsedData[item]);
      }
-  });
-  
-  core.exportVariable('ENVIRONMENT', environment);  
+  });  
 }
 
 catch (error) {
@@ -40,17 +37,31 @@ catch (error) {
 
 function getEnvironment(branchName) 
 {
-  var branchSuffix = branchName.replace('refs/heads/','').toLowerCase();
-  switch (branchSuffix) {
-    case 'production':
-      return 'PRODUCTION';
-      break;
-    case 'staging':
-     return 'STAGING';
-     break;
-   default:
-    return 'DEVELOPMENT';
-}
+    var branchSuffix = branchName.replace('refs/heads/','').toLowerCase();
+    var isFeatureBranch = false;
+    var environment = '';
+  
+    switch (branchSuffix) 
+    {
+      case 'production':
+        environment = 'PRODUCTION';
+        break;
+      case 'staging':
+       environment = 'STAGING';
+       break;
+      case 'master':
+      case 'main':
+        environment = 'DEVELOPMENT';
+        break;
+      default:
+       isFeatureBranch = true;
+       environment = 'DEVELOPMENT';
+
+     core.exportVariable('IS_FEATURE_BRANCH', isFeatureBranch);
+     core.exportVariable('ENVIRONMENT', environment);
+
+     return environment;
+   }
 
   
 }
