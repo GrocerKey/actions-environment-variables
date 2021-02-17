@@ -1,4 +1,4 @@
-name: 'actions-environment-variables'
+name: 'actions-set-environment'
 description: ''
 inputs:
   branch:
