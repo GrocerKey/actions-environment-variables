@@ -86,19 +86,21 @@ function loadVariables(env, secrets) {
 
 function configureAWS(accessKey, secretKey, roleToAssume) {
    
-    const sts = getStsClient('us-east-1', accessKey, secretKey);
-
+    var region = 'us-east-1';
+    const sts = getStsClient(region, accessKey, secretKey);
+    
     sts.assumeRole({
       RoleArn: roleToAssume,
       RoleSessionName : 'default'
     })
     .promise()
     .then(function (data) {
-      aws.config.update({
-         region: 'us-east-1',
+      console.log("pre config update");
+      aws.config.update({         
          accessKeyId: data.Credentials.AccessKeyId,
          secretAccessKey: data.Credentials.SecretAccessKey,
          sessionToken: data.Credentials.SessionToken,
+         region: region
       });
     })
     .catch(function (err) {
@@ -107,9 +109,10 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
 }
 
 function getStsClient(region, accessKey, secretKey) {
+    console.log("STS");
     var credentials = new Credentials();
     credentials.accessKeyId = accessKey;
-    credentials.secretAccessKey = secretKey;
+    credentials.secretAccessKey = secretKey
 
     return new aws.STS({
       credentials : credentials,
