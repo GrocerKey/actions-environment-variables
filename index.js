@@ -83,7 +83,8 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
    const sts = getStsClient('us-east-1', accessKey, secretKey);
 
     sts.assumeRole({
-      RoleArn: roleToAssume
+      RoleArn: roleToAssume,
+      RoleSessionName : 'default'
     })
     .promise()
     .then(function (data) {
