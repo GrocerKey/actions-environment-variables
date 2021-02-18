@@ -91,7 +91,7 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
     
     sts.assumeRole({
       RoleArn: roleToAssume,      
-      RoleSessionName : roleToAssume      
+      RoleSessionName : 'github'      
     })
     .promise()
     .then(function (data) {
