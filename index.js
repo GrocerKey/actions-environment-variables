@@ -8,8 +8,12 @@ try {
   const env = core.getInput('env');
   const secrets = core.getInput('secrets');
 
+  const accessKey = core.getInput('aws-access-key');
+  const secretKey = core.getInput('aws-secret-key');
+  const roleToAssume = core.getInput('aws-sts-role');
+
   setEnvironment(branch);
-  configureAWS('j', 'j', 'j')
+  configureAWS(accessKey, secretKey, roleToAssume)
   loadVariables(env, secrets);
 }
 
@@ -80,7 +84,7 @@ function loadVariables(env, secrets) {
 
 function configureAWS(accessKey, secretKey, roleToAssume) {
    
-   const sts = getStsClient('us-east-1', accessKey, secretKey);
+    const sts = getStsClient('us-east-1', accessKey, secretKey);
 
     sts.assumeRole({
       RoleArn: roleToAssume,
@@ -93,7 +97,10 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
          secretAccessKey: data.Credentials.SecretAccessKey,
          sessionToken: data.Credentials.SessionToken,
       });
-  });
+    })
+    .catch(function (err) {
+      core.setFailed(err);
+    });
 }
 
 function getStsClient(region, accessKey, secretKey) {
@@ -106,4 +113,4 @@ function getStsClient(region, accessKey, secretKey) {
       region : region,
       stsRegionalEndpoints: 'regional',
     });
-  }
+}
