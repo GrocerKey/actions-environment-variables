@@ -1,6 +1,11 @@
 name: 'actions-set-environment'
 description: ''
 inputs:
+  env:
+    required: false
+    default: ''
+  secrets:
+    required: false  
   branch:
     required: true
     default: ''

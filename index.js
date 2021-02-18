@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { Credentials } = require('aws-sdk');
 const aws = require('aws-sdk');
 
 try {    
@@ -95,11 +96,12 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
 }
 
 function getStsClient(region, accessKey, secretKey) {
+    var credentials = new Credentials();
+    credentials.accessKeyId = accessKey;
+    credentials.secretAccessKey = secretKey;
+
     return new aws.STS({
-      credentials = {
-        accessKeyId:accessKey,
-        secretAccessKey:secretKey
-      },
+      credentials : credentials,
       region : region,
       stsRegionalEndpoints: 'regional',
     });
