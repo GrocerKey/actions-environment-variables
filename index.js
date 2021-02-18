@@ -91,16 +91,15 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
     
     sts.assumeRole({
       RoleArn: roleToAssume,      
-      RoleSessionName : 'default'
+      RoleSessionName : roleToAssume      
     })
     .promise()
     .then(function (data) {
-      console.log(region);
-      aws.config.update({         
+      aws.config.update({
+        region: region,         
          accessKeyId: data.Credentials.AccessKeyId,
          secretAccessKey: data.Credentials.SecretAccessKey,
-         sessionToken: data.Credentials.SessionToken,
-         region: region
+         sessionToken: data.Credentials.SessionToken
       });
     })
     .catch(function (err) {
