@@ -13,8 +13,9 @@ try {
   const roleToAssume = core.getInput('role-to-assume');
 
   setEnvironment(branch);
-  configureAWS(accessKey, secretKey, roleToAssume)
-  loadVariables(env, secrets);
+  configureAWS(accessKey, secretKey, roleToAssume).then(() =>{
+    loadVariables(env, secrets);
+  });
 }
 
 catch (error) {
@@ -89,7 +90,7 @@ function  configureAWS(accessKey, secretKey, roleToAssume) {
     var region = 'us-east-1';
     const sts = getStsClient(region, accessKey, secretKey);
     
-    sts.assumeRole({
+    return sts.assumeRole({
       RoleArn: roleToAssume,      
       RoleSessionName : 'github'      
     })
@@ -117,6 +118,6 @@ function getStsClient(region, accessKey, secretKey) {
 
     return new aws.STS({
       credentials : credentials,
-      region : region
+      region: region
     });
 }
