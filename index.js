@@ -10,8 +10,8 @@ try {
 
   const accessKey = core.getInput('aws-access-key-id');
   const secretKey = core.getInput('aws-secret-access-key');
-  const roleToAssume = core.getInput('role-to-assume);
-
+  const roleToAssume = core.getInput('role-to-assume');
+  
   setEnvironment(branch);
   configureAWS(accessKey, secretKey, roleToAssume)
   loadVariables(env, secrets);
