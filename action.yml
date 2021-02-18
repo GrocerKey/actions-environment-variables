@@ -9,6 +9,9 @@ inputs:
   branch:
     required: true
     default: ''
+  role-to-assume:
+    required: true
+    default: ''
   aws-access-key-id:
     required: true
     default: ''
