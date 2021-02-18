@@ -11,7 +11,7 @@ try {
   const accessKey = core.getInput('aws-access-key-id');
   const secretKey = core.getInput('aws-secret-access-key');
   const roleToAssume = core.getInput('role-to-assume');
-  
+
   setEnvironment(branch);
   configureAWS(accessKey, secretKey, roleToAssume)
   loadVariables(env, secrets);
@@ -66,7 +66,9 @@ function loadVariables(env, secrets) {
   ssm.getParameters({
     Names: variables,
     WithDecryption: true
-  }).then((output) => {   
+  })
+  .promise()
+  .then((output) => {   
       output.Parameters.forEach((item) => {
         var keyName = item.Name.replace('/ci/','');
         core.exportVariable(keyName, item.Value);
