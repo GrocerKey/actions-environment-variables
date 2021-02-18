@@ -13,7 +13,7 @@ try {
   const roleToAssume = core.getInput('role-to-assume');
 
   setEnvironment(branch);
-  configureAWS(accessKey, secretKey, roleToAssume)
+  await configureAWS(accessKey, secretKey, roleToAssume)
   loadVariables(env, secrets);
 }
 
@@ -50,7 +50,7 @@ function setEnvironment(branchName)
 }
 
 function loadVariables(env, secrets) {
-
+  console.log('loaded');
   var variables = env.split(' ');
   
   if(secrets != '') {
@@ -84,7 +84,7 @@ function loadVariables(env, secrets) {
   
 }
 
-function configureAWS(accessKey, secretKey, roleToAssume) {
+async function  configureAWS(accessKey, secretKey, roleToAssume) {
    
     var region = 'us-east-1';
     const sts = getStsClient(region, accessKey, secretKey);
@@ -95,11 +95,14 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
     })
     .promise()
     .then(function (data) {
-      return aws.config.update({
+      aws.config.update({
          region: region,
          accessKeyId: data.Credentials.AccessKeyId,
          secretAccessKey: data.Credentials.SecretAccessKey,
-         sessionToken: data.Credentials.SessionToken
+         sessionToken: data.Credentials.SessionToken,
+         httpOptions: {
+           xhrAsync: false
+         }
       });
     })
     .catch(function (err) {
