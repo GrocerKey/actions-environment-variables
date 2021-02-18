@@ -90,12 +90,11 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
     const sts = getStsClient(region, accessKey, secretKey);
     
     sts.assumeRole({
-      RoleArn: roleToAssume,
+      RoleArn: roleToAssume,      
       RoleSessionName : 'default'
     })
     .promise()
     .then(function (data) {
-      console.log("pre config update");
       aws.config.update({         
          accessKeyId: data.Credentials.AccessKeyId,
          secretAccessKey: data.Credentials.SecretAccessKey,
@@ -109,14 +108,12 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
 }
 
 function getStsClient(region, accessKey, secretKey) {
-    console.log("STS");
     var credentials = new Credentials();
     credentials.accessKeyId = accessKey;
     credentials.secretAccessKey = secretKey
 
     return new aws.STS({
       credentials : credentials,
-      region : region,
-      stsRegionalEndpoints: 'regional',
+      region : region
     });
 }
