@@ -13,7 +13,7 @@ try {
   const roleToAssume = core.getInput('role-to-assume');
 
   setEnvironment(branch);
-  await configureAWS(accessKey, secretKey, roleToAssume)
+  configureAWS(accessKey, secretKey, roleToAssume)
   loadVariables(env, secrets);
 }
 
@@ -84,7 +84,7 @@ function loadVariables(env, secrets) {
   
 }
 
-async function  configureAWS(accessKey, secretKey, roleToAssume) {
+function  configureAWS(accessKey, secretKey, roleToAssume) {
    
     var region = 'us-east-1';
     const sts = getStsClient(region, accessKey, secretKey);
