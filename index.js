@@ -8,8 +8,8 @@ try {
   const env = core.getInput('env');
   const secrets = core.getInput('secrets');
 
-  const accessKey = core.getInput('aws-access-key');
-  const secretKey = core.getInput('aws-secret-key');
+  const accessKey = core.getInput('aws-access-key-id');
+  const secretKey = core.getInput('aws-secret-access-key');
   const roleToAssume = core.getInput('aws-sts-role');
 
   setEnvironment(branch);

@@ -9,6 +9,12 @@ inputs:
   branch:
     required: true
     default: ''
+  aws-access-key-id:
+    required: true
+    default: ''
+  aws-secret-access-key:
+    required: true
+    default: ''
 runs:
   using: 'node12'
   main: 'index.js'
