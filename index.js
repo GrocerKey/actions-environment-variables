@@ -95,6 +95,7 @@ function configureAWS(accessKey, secretKey, roleToAssume) {
     })
     .promise()
     .then(function (data) {
+      console.log(region);
       aws.config.update({         
          accessKeyId: data.Credentials.AccessKeyId,
          secretAccessKey: data.Credentials.SecretAccessKey,
