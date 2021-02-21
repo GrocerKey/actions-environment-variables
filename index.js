@@ -13,9 +13,7 @@ try {
   const roleToAssume = core.getInput('role-to-assume');
 
   setEnvironment(branch);
-  configureAWS(accessKey, secretKey, roleToAssume).then(() =>{
-    loadVariables(env, secrets);
-  });
+  loadVariables(env, secrets);
 }
 
 catch (error) {
@@ -51,7 +49,6 @@ function setEnvironment(branchName)
 }
 
 function loadVariables(env, secrets) {
-  console.log('loaded');
   var variables = env.split(' ');
   
   if(secrets != '') {
