@@ -29,18 +29,18 @@ function setEnvironment(branchName)
     switch (branchSuffix) 
     {
       case 'production':
-        environment = 'PRODUCTION';
+        environment = 'production';
         break;
       case 'staging':
-       environment = 'STAGING';
+       environment = 'staging';
        break;
       case 'master':
       case 'main':
-        environment = 'DEVELOPMENT';
+        environment = 'development';
         break;
       default:
        isFeatureBranch = true;
-       environment = 'DEVELOPMENT';     
+       environment = 'development';     
    }
    core.exportVariable('IS_FEATURE_BRANCH', isFeatureBranch);
    core.exportVariable('ENVIRONMENT', environment);
