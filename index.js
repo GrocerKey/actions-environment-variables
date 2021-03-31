@@ -49,6 +49,10 @@ function setEnvironment(branchName)
 }
 
 function loadVariables(env, secrets) {
+  
+  if(env == '')
+    return;
+  
   var variables = env.split(' ');
   
   if(secrets != '') {
